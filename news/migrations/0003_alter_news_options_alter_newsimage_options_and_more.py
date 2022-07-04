@@ -6,31 +6,31 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news', '0002_news_site'),
+        ("news", "0002_news_site"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='news',
-            options={'managed': True},
+            name="news",
+            options={"managed": True},
         ),
         migrations.AlterModelOptions(
-            name='newsimage',
-            options={'managed': True},
+            name="newsimage",
+            options={"managed": True},
         ),
         migrations.AlterField(
-            model_name='news',
-            name='pub_date',
+            model_name="news",
+            name="pub_date",
             field=models.CharField(max_length=50),
         ),
         migrations.AlterField(
-            model_name='news',
-            name='title',
+            model_name="news",
+            name="title",
             field=models.CharField(max_length=180),
         ),
         migrations.AlterField(
-            model_name='news',
-            name='url',
+            model_name="news",
+            name="url",
             field=models.CharField(max_length=200, unique=True),
         ),
     ]

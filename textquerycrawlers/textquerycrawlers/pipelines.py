@@ -10,6 +10,7 @@ from textquerycrawlers.textquerycrawlers.items import NewsItem
 from dotenv import load_dotenv
 import os
 
+
 class TextquerycrawlersPipeline:
     def process_item(self, item, spider):
         # Create news

@@ -8,26 +8,46 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='News',
+            name="News",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=120)),
-                ('url', models.CharField(max_length=200)),
-                ('pub_date', models.DateField()),
-                ('body', models.TextField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=120)),
+                ("url", models.CharField(max_length=200)),
+                ("pub_date", models.DateField()),
+                ("body", models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='NewsImage',
+            name="NewsImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image_url', models.CharField(max_length=200)),
-                ('news', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='news.news')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image_url", models.CharField(max_length=200)),
+                (
+                    "news",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="news.news"
+                    ),
+                ),
             ],
         ),
     ]

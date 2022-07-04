@@ -8,6 +8,7 @@ authors = ["Stoyan Ivanov <ssivanov19@codingburgas.bg>"]
 python = "^3.9"
 Django = "^4.0.5"
 Scrapy = "^2.6.1"
+pre-commit = "^2.19.0"
 
 [tool.poetry.dev-dependencies]
 

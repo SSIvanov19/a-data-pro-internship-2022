@@ -1,1 +1,1 @@
-default_app_config = 'news.apps.MyAppConfig'
+default_app_config = "news.apps.MyAppConfig"

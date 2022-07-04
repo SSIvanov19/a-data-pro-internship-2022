@@ -15,6 +15,7 @@ class News(models.Model):
     class Meta:
         managed = True
 
+
 class NewsImage(models.Model):
     news = models.ForeignKey(News, on_delete=models.CASCADE)
     image_url = models.CharField(max_length=200)
