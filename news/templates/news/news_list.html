@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>News</h1>
+      <ul>
+      {% for news in object_list %}
+        <li>{{ news.pub_date|date }} - {{ news.title }}</li>
+        {{ news.body }}
+        <br>
+        <br>
+      {% empty %}
+        <li>No news yet.</li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
