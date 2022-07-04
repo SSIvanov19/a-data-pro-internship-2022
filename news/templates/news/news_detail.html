@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      {% for image in news_images %}
+      <img src="{{image.image_url}}" />
+      {% endfor %}
+      <h1>{{news_detail.title}}</h1>
+      <p>Published at: {{news_detail.pub_date}}</p>
+      {% autoescape off %}
+      <p>{{news_detail.body}}</p>
+      {% endautoescape %}
+      <a href="{{news_detail.url}}">Source</a>
+      <br>
+      <br>
+      <p>People mention in this article</p>
+      {% for person in entities %}
+      <p>{{person.name}}</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

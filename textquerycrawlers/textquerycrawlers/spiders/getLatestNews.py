@@ -26,7 +26,9 @@ class GetLatestNews(scrapy.Spider):
         newsBody = ""
 
         for newsBodyPart in response.css(""".view > p"""):
-            newsBody += w3lib.html.remove_tags(newsBodyPart.get()) + "\n"
+            newsBody += (
+                " ".join(w3lib.html.remove_tags(newsBodyPart.get()).split()) + "<br>"
+            )
 
         news.update({"body": newsBody})
         news["imageUrl"].append(

@@ -4,11 +4,19 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-# useful for handling different item types with a single interface
-from news.models import News, NewsImage
+# useful for handling different item types with a single
+import string
+import django
+
+django.setup()
+
+
+from news.models import Entity, News, NewsImage
 from textquerycrawlers.textquerycrawlers.items import NewsItem
 from dotenv import load_dotenv
 import os
+import spacy
+import w3lib
 
 
 class TextquerycrawlersPipeline:
@@ -27,5 +35,17 @@ class TextquerycrawlersPipeline:
         for imageUrl in item["imageUrl"]:
             newsImage = NewsImage(news=news, image_url=imageUrl)
             newsImage.save()
+
+        item["body"] = w3lib.html.remove_tags(item["body"]).translate(
+            str.maketrans("", "", string.punctuation)
+        )
+        # Create entities
+        nlp = spacy.load("mk_core_news_md")
+        doc = nlp(item["body"])
+
+        for i in doc.ents:
+            if i.label_ == "PERSON":
+                entity = Entity(name=i.text, news=news)
+                entity.save()
 
         return item

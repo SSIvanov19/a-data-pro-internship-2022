@@ -5,10 +5,7 @@
       <h1>News</h1>
       <ul>
       {% for news in object_list %}
-        <li>{{ news.pub_date|date }} - {{ news.title }}</li>
-        {{ news.body }}
-        <br>
-        <br>
+        <li><a href={% url 'news:detail' pk=news.pk%}>{{ news.title }}</a></li>
       {% empty %}
         <li>No news yet.</li>
       {% endfor %}
