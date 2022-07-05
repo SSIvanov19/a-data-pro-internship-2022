@@ -1,6 +1,11 @@
+from multiprocessing import Pool
 from news.models import Entity, News, NewsImage
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
+
+from textquerycrawlers.textquerycrawlers.startCrawlingSpecific import (
+    startCrawlingSpecific,
+)
 
 # Create your views here.
 
@@ -25,13 +30,22 @@ class NewsListView(ListView):
     template_name = "news/news_list.html"
     context_object_name = "news_list"
     paginate_by = 10
-    # queryset = News.objects.order_by("-pub_date")
 
     def get_queryset(self):  # new
         query = self.request.GET.get("q")
         sort = self.request.GET.get("sortby")
         order = self.request.GET.get("order")
+        crawl = self.request.GET.get("crawl")
         object_list = News.objects.order_by("-pub_date")
+
+        if crawl == "true" and query:
+            print("crawling")
+            try:
+                # Start crawling in a separate
+                pool = Pool(processes=1)
+                pool.apply_async(startCrawlingSpecific, args=(query,))
+            except Exception as e:
+                print(e)
 
         if query:
             object_list = News.objects.filter(
@@ -75,8 +89,13 @@ class NewsDetailView(DetailView):
         context["news_images"] = NewsImage.objects.filter(news=self.object)
 
         entities = Entity.objects.filter(news=self.object)
+
+        if not entities:
+            return context
+
         for entity in entities:
             entity.count = entities.filter(name=entity.name).count()
+
         context["entities"] = sorted(
             remove_dupes(entities), key=lambda x: x.count, reverse=True
         )
