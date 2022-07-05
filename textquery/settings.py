@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from multiprocessing import Queue
 from pathlib import Path
 from dotenv import load_dotenv
 import os
@@ -110,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -122,6 +122,35 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+        "loki": {
+            "class": "logging_loki.LokiQueueHandler",
+            "level": "DEBUG",
+            "queue": Queue(-1),
+            "url": os.getenv("LOKI_URL"),
+            "tags": {"application": "TextQuery"},
+            "auth": (os.getenv("LOKI_USER"), os.getenv("LOKI_PASSWORD")),
+            "version": "1",
+        },
+    },
+    "root": {
+        "handlers": ["console", "loki"],
+        "level": "WARNING",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console", "loki"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": False,
+        },
+    },
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

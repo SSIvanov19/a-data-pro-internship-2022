@@ -1,10 +1,11 @@
+from asyncio.log import logger
+from cgitb import handler
 import imp
 import logging
 import scrapy
 import w3lib.html
-import sys
-
 from textquerycrawlers.textquerycrawlers.items import NewsItem
+import logging
 
 
 class GetLatestNews(scrapy.Spider):
@@ -13,6 +14,8 @@ class GetLatestNews(scrapy.Spider):
     start_urls = ["https://gov.bg/bg/prestsentar/novini"]
 
     def parse_news(self, response):
+        logging.info("Getting news from: " + response.url)
+
         news = NewsItem
         news = {
             "title": response.css(""".view > h1:nth-child(2)::text""").get(),
@@ -40,6 +43,10 @@ class GetLatestNews(scrapy.Spider):
 
     def parse(self, response):
         logging.getLogger("scrapy").propagate = False
+
+        logging.info("Started crawling for news in " + self.allowed_domains[0])
+        logging.info("Found " + str(len(response.css("""div.item"""))) + " news")
+
         # Get all news
         for newsDiv in response.css("""div.item"""):
             # Get news href

@@ -13,7 +13,5 @@ class NewsConfig(AppConfig):
             # Start crawling in a separate
             pool = Pool(processes=1)
             pool.apply_async(startCrawling)
-            pool.close()
-            pool.join()
         except Exception as e:
             print(e)
