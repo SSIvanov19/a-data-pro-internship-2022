@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+* {
+  font-family: "Comfortaa", cursive;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 30px rgb(150, 150, 150);
+}
+
+.banner {
+  position: relative;
+  background-image: url(../img/background.png);
+  background-size: cover;
+  display: relative;
+  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+footer {
+  background: rgb(255, 255, 255);
+  border-top: 3px solid rgb(13, 152, 216);
+  color: rgb(0, 0, 0) !important;
+}
+
+.footer_title {
+  color: rgb(0, 0, 0) !important;
+}
+
+.newsletter-form {
+  display: flex;
+}
+
+.newsletter-form input {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  outline: none;
+  padding: 0 15px;
+  font-size: 14px;
+  background-color: #5c677b;
+  color: #fff;
+}
+
+.newsletter-form ::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.newsletter-form button {
+  width: 50px;
+  height: 40px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #d77b5d;
+  outline: none;
+  border: 0;
+}
+
+.is-paddingless-horizontal {
+  display: inline-flex;
+}
+
+.card {
+  margin-left: 30px;
+}
+
+.ol-popup {
+  font-size: 12px;
+  position: absolute;
+  background-color: white;
+  -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -50px;
+  min-width: 100px;
+  text-align: center;
+}
+
+.about-image iframe {
+  background-color: #fff;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.about-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+  padding: 1em 2em;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media only screen and (max-width: 769px) {
+  .about-item {
+    width: 100%;
+  }
+  .mobile-only {
+    display: block;
+  }
+  .about-item {
+    padding: 1em;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .mobile-only {
+    display: none;
+  }
+}

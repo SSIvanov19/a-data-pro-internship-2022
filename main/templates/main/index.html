@@ -1,7 +1,252 @@
-{% extends "base.html" %}
-{% block content%}
-<br>
-<center>
-This is our index!
-</center>
+{% extends "base.html" %} {% load static %} {% block content%}
+<section class="hero main_hero is-fullheight banner">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 main-text">
+        This is a website for
+        <span class="typed-text" style="color: #ed1e79"></span
+        ><span class="cursor">&nbsp;</span>
+      </h1>
+    </div>
+  </div>
+</section>
+<section style="margin: 5%">
+  <div>
+    <p class="title is-3">What is the purpose of our project??</p>
+    <br />
+    <p>
+      Powered by AI, our project has the goal to provide citizens with quick and
+      easy access to the news that they consider important. They can sort,
+      filter and display statistics for each one of them!
+    </p>
+  </div>
+</section>
+
+<section class="hero" style="margin-right: 22%; margin-left: 3%">
+  <div class="hero-body">
+    <div class="container">
+      <p class="title is-3 has-text-centered">Our team</p>
+      <br /><br /><br />
+      <div class="columns has-text-centered">
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img
+                  src="{% static 'main/images/avatars/Stoyan.png'%}"
+                  alt="Stoyan Ivanov"
+                />
+              </figure>
+            </div>
+            <div class="card-content box">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4" style="padding-bottom: 10px">
+                    Stoyan Ivanov
+                  </p>
+                  <p class="subtitle is-6">@SSIvanov19</p>
+                </div>
+              </div>
+
+              <div class="content">
+                Stoyan is our main Web Developer. His main task was to create
+                the platform behind our project. Also deployed the entire
+                project to Azure. You can see his
+                <a href="https://github.com/SSIvanov19" target="_blanck"
+                  >GitHub profile</a
+                >
+                for more information.
+                <br /><br />
+                <a>#Web</a> <a>#Django</a> <a>#Deployment</a> <a>#Azure</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img
+                  src="{% static 'main/images/avatars/Rado.png'%}"
+                  alt="Radoslav Lisitsov"
+                />
+              </figure>
+            </div>
+            <div class="card-content box">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4" style="padding-bottom: 10px">
+                    Radoslav Lisitsov
+                  </p>
+                  <p class="subtitle is-6">@RPLisitsov19</p>
+                </div>
+              </div>
+
+              <div class="content">
+                Radoslav is one of our Front-End Developers and his task was to
+                create UI (User Interface) for our web platform using Bulma. You
+                can see his
+                <a href="https://github.com/RPLisitsov19" target="_blanck"
+                  >GitHub profile</a
+                >
+                for more information.
+                <br /><br /><br /><br />
+                <a>#FrontEnd</a> <a>#UI</a> <a>#Bulma</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img
+                  src="{% static 'main/images/avatars/Petar_n.png'%}"
+                  alt="Petar Nikolov"
+                />
+              </figure>
+            </div>
+            <div class="card-content box">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4" style="padding-bottom: 10px">
+                    Petar Nikolov
+                  </p>
+                  <p class="subtitle is-6">@PRNikolov19</p>
+                </div>
+              </div>
+
+              <div class="content">
+                Petar Nikolov is one of our Front-End Developers and his task
+                was to create UI (User Interface) for our web platform using
+                Bulma. You can see his
+                <a href="https://github.com/PRNikolov19" target="_blanck"
+                  >GitHub profile</a
+                >
+                for more information.
+                <br /><br /><br /><br />
+                <a>#FrontEnd</a> <a>#UI</a> <a>#Bulma</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img
+                  src="{% static 'main/images/avatars/Petar_s.png'%}"
+                  alt="Petar Spasov"
+                />
+              </figure>
+            </div>
+            <div class="card-content box">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4" style="padding-bottom: 10px">
+                    Petar Spasov
+                  </p>
+                  <p class="subtitle is-6">@PZSpasov19</p>
+                </div>
+              </div>
+
+              <div class="content">
+                Petar Spasov had to make sure everyone got their assignments
+                done on time, help them when they needed it, and do presentation
+                and documentation. You can see his
+                <a href="https://github.com/PZSpasov19" target="_blanck"
+                  >GitHub profile</a
+                >
+                for more info.
+                <br /><br />
+                <a>#ScrumTrainer</a> <a>#Organisation</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img
+                  src="{% static 'main/images/avatars/Kaloyan.png'%}"
+                  alt="Kaloyan Pazlamachev"
+                />
+              </figure>
+            </div>
+            <div class="card-content box">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4" style="padding-bottom: 10px">
+                    Kaloyan Pazlamachev
+                  </p>
+                  <p class="subtitle is-6">@KNPazlamachev19</p>
+                </div>
+              </div>
+
+              <div class="content">
+                Kaloyan is our QA (Quality Assurance). His main task was to
+                insure our project run fine, without any problems. For this
+                purpose he has created some unit-tests. You can see his
+                <a href="https://github.com/KNPazlamachev19" target="_blanck"
+                  >GitHub profile</a
+                >
+                for more information.
+                <br /><br />
+                <a>#QA</a> <a>#Django</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block scripts %}
+<script>
+  const typedTextSpan = document.querySelector(".typed-text");
+  const cursorSpan = document.querySelector(".cursor");
+
+  const textArray = ["news!", "information!", "statistics!"];
+  const typingDelay = 100;
+  const erasingDelay = 100;
+  const newTextDelay = 1700;
+  let textArrayIndex = 0;
+  let charIndex = 0;
+
+  function type() {
+    if (charIndex < textArray[textArrayIndex].length) {
+      if (!cursorSpan.classList.contains("typing"))
+        cursorSpan.classList.add("typing");
+      typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(type, typingDelay);
+    } else {
+      cursorSpan.classList.remove("typing");
+      setTimeout(erase, newTextDelay);
+    }
+  }
+
+  function erase() {
+    if (charIndex > 0) {
+      if (!cursorSpan.classList.contains("typing"))
+        cursorSpan.classList.add("typing");
+      typedTextSpan.textContent = textArray[textArrayIndex].substring(
+        0,
+        charIndex - 1
+      );
+      charIndex--;
+      setTimeout(erase, erasingDelay);
+    } else {
+      cursorSpan.classList.remove("typing");
+      textArrayIndex++;
+      if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+      setTimeout(type, typingDelay + 1100);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (textArray.length) setTimeout(type, newTextDelay + 250);
+  });
+</script>
 {% endblock %}
