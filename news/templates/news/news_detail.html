@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load random_numbers %} {% block content %}
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -13,11 +13,75 @@
       <a href="{{news_detail.url}}">Source</a>
       <br />
       <br />
-      <p>People mention in this article</p>
-      {% for person in entities %}
-      <p>{{person}} - {{person.count}}</p>
-      {% endfor %}
+      <canvas id="pie" width="400" height="100"></canvas>
+      <br />
+      <br />
+      <canvas id="bar" width="400" height="100"></canvas>
     </div>
   </div>
 </div>
+{% endblock %} {% block scripts %}
+<script>
+  $(document).ready(() => {
+          let pieCtx = document.getElementById('pie').getContext('2d');
+          let pie = new Chart(pieCtx, {
+              type: 'doughnut',
+              data: {
+                  labels: [{%for person in entities%}'{{person.name}}',{%endfor%}],
+                  datasets: [{
+                      label: 'People or organisation mention in this article',
+                      data: [{%for person in entities%}{{person.count}},{%endfor%}],
+                      backgroundColor: [
+                      {%for person in entities %}
+                      'rgba({% random_int 1 255 %}, {% random_int 1 255 %}, {% random_int 1 255 %}, 0.2)',{% endfor %}
+                      ],
+                      borderColor: [
+                      {%for person in entities %}
+                      'rgba({% random_int 1 255 %}, {% random_int 1 255 %}, {% random_int 1 255 %}, 0.2)',{% endfor %}
+                      ],
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              }
+          }
+         );
+
+         let barCtx = document.getElementById('bar').getContext('2d');
+         let bar = new Chart(barCtx, {
+             type: 'bar',
+             data: {
+                 labels: [{%for person in entities%}'{{person.name}}',{%endfor%}],
+                 datasets: [{
+                     label: 'People or organisation mention in this article',
+                     data: [{%for person in entities%}{{person.count}},{%endfor%}],
+                     backgroundColor: [
+                     {%for person in entities %}
+                     'rgba({% random_int 1 255 %}, {% random_int 1 255 %}, {% random_int 1 255 %}, 0.2)',{% endfor %}
+                      ],
+                     borderColor: [
+                     {%for person in entities %}
+                     'rgba({% random_int 1 255 %}, {% random_int 1 255 %}, {% random_int 1 255 %}, 0.2)',{% endfor %}
+                     ],
+                     borderWidth: 1
+                 }]
+             },
+             options: {
+              scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+             }
+         }
+        );
+      });
+</script>
 {% endblock %}

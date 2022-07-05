@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% load random_numbers %}
+{% block content %}
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -29,13 +31,74 @@
 
           </span>
         </div>
-      <p>People or organisation mentioned in the news:</p>
-      <ul>
-          {% for entity in entity_list %}
-              <li>{{ entity }} - {{ entity.count }}</li>
-          {% endfor %}
-      </ul>
+      <canvas id="myChart" width="400" height="100"></canvas>
+      <canvas id="bar" width="400" height="100"></canvas>
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $(document).ready(() => {
+          let ctx = document.getElementById('myChart').getContext('2d');
+          let myChart = new Chart(ctx, {
+              type: 'doughnut',
+              data: {
+                  labels: [{%for person in entity_list%}'{{person.name}}',{%endfor%}],
+                  datasets: [{
+                      label: 'People or organisation mentioned in the news',
+                      data: [{%for person in entity_list%}{{person.count}},{%endfor%}],
+                      backgroundColor: [
+                      {%for person in entity_list %}
+                      'rgba({% random_int 1 255 %}, {% random_int 1 255 %}, {% random_int 1 255 %}, 0.2)',{% endfor %}
+                      ],
+                      borderColor: [
+                      {%for person in entity_list %}
+                      'rgba({% random_int 1 255 %}, {% random_int 1 255 %}, {% random_int 1 255 %}, 0.2)',{% endfor %}
+                      ],
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              }
+          }
+  );
+  let barCtx = document.getElementById('bar').getContext('2d');
+  let bar = new Chart(barCtx, {
+      type: 'bar',
+      data: {
+          labels: [{%for person in entity_list%}'{{person.name}}',{%endfor%}],
+          datasets: [{
+              label: 'People or organisation mentioned in the news',
+              data: [{%for person in entity_list%}{{person.count}},{%endfor%}],
+              backgroundColor: [
+              {%for person in entity_list %}
+              'rgba({% random_int 1 255 %}, {% random_int 1 255 %}, {% random_int 1 255 %}, 0.2)',{% endfor %}
+               ],
+              borderColor: [
+              {%for person in entity_list %}
+              'rgba({% random_int 1 255 %}, {% random_int 1 255 %}, {% random_int 1 255 %}, 0.2)',{% endfor %}
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      }
+      }
+  }
+ );
+      });
+</script>
 {% endblock %}
