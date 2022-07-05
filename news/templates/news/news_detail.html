@@ -11,11 +11,11 @@
       <p>{{news_detail.body}}</p>
       {% endautoescape %}
       <a href="{{news_detail.url}}">Source</a>
-      <br>
-      <br>
+      <br />
+      <br />
       <p>People mention in this article</p>
       {% for person in entities %}
-      <p>{{person.name}}</p>
+      <p>{{person}} - {{person.count}}</p>
       {% endfor %}
     </div>
   </div>

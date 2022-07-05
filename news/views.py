@@ -1,5 +1,3 @@
-from html import entities
-from django.shortcuts import render
 from news.models import Entity, News, NewsImage
 from django.views.generic import ListView, DetailView
 
@@ -22,5 +20,8 @@ class NewsDetailView(DetailView):
         context["news_images"] = NewsImage.objects.filter(news=self.object)
 
         entities = Entity.objects.filter(news=self.object)
+        for entity in entities:
+            entity.count = entities.filter(name=entity.name).count()
         context["entities"] = entities
+
         return context
