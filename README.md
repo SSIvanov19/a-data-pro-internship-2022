@@ -22,11 +22,11 @@
 Powered by AI, our project has the goal to provide citizens with quick and easy access to the news that they consider important. They can sort, filter and display statistics for each one of them!
 
 ## Demo of our project 🎥 <a name = "demo"></a>
-<img src = "" alt = "demo img 1">
-<img src = "" alt = "demo img 2">
+<img src = "https://user-images.githubusercontent.com/63718744/177466392-a3ffdb8e-dd9e-4e08-b98d-907c6e7df8ee.png" alt = "demo img 1">
+<img src = "https://user-images.githubusercontent.com/63718744/177466535-95417566-ccf3-4efa-b22c-f24e0cc79865.png" alt = "demo img 2">
 
 ## Related documents 📄 <a name = "docs"></a>
-   + [Presentation]()
+   + [Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/ssivanov19_codingburgas_bg/EWzyPB3o1GVCusRvMgAC-A4B9bC_zgRfuI8J7IqIQsM7Lg?e=86A2V2)
 
 ## Usage 🖱️ <a name = "usage"></a>
 Just go to the news page! There you will fimd information for all of the news. You can filter and serch for specific news, if you want!
