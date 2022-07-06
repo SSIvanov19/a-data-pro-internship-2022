@@ -4,7 +4,6 @@
 
 <div align = "center">
   <img src = "https://img.shields.io/github/languages/count/SSIvanov19/a-data-pro-internship-2022?style=for-the-badge">
-  <img src = "https://img.shields.io/github/contributors/SSIvanov19/a-data-pro-internship-2022?style=for-the-badge">
   <img src = "https://img.shields.io/github/repo-size/SSIvanov19/a-data-pro-internship-2022?style=for-the-badge">
   <img src = "https://img.shields.io/github/last-commit/SSIvanov19/a-data-pro-internship-2022?style=for-the-badge">
   <img src = "https://img.shields.io/github/languages/top/SSIvanov19/a-data-pro-internship-2022?style=for-the-badge">
