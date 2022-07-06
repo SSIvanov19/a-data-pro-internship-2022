@@ -22,5 +22,9 @@ services:
       - POSTGRES_PASSWORD=postgres
       - DATABASE_HOST=db
       - DATABASE_PORT=5432
+      - DJANGO_SECRET=secret
+      - LOKI_URL=http://loki:3100/api/v1/
+      - LOKI_USER=loki
+      - LOKI_PASSWORD=loki
     depends_on:
       - db
