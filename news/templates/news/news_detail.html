@@ -1,10 +1,43 @@
 {% extends 'base.html' %} {% load random_numbers %} {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      {% for image in news_images %}
-      <img src="{{image.image_url}}" />
-      {% endfor %}
+<section class="section">
+  <div class="container">
+    <button class="button is-primary" onclick="window.location.href='/news/'">
+      <- Back
+    </button>
+    <button class="button is-link" onclick="window.location.href='{{news_detail.url}}'">
+        Go to source
+    </button>
+    <div class="collumns">
+      <div class="column is-half-desktop">
+        {% for image in news_images %}
+        <img
+          src="{{ image.image_url }}"
+          alt="There is not image for this news"
+        />
+        {% endfor %}
+      </div>
+      <div class="column">
+        <h1 class="title">{{ news_detail.title }}</h1>
+        <p class="subtitle">{{ news_detail.pub_date }}</p>
+        {% autoescape off %}
+        <p style="text-align: justify">{{ news_detail.body }}</p>
+        {% endautoescape %}
+      </div>
+    </div>
+  </div>
+  <canvas id="pie" width="400" height="100"></canvas>
+  <br />
+  <br />
+  <canvas id="bar" width="400" height="100"></canvas>
+</section>
+<!--
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% for image in news_images %}
+                <img src="{{image.image_url}}" />
+                {% endfor %}
       <h1>{{news_detail.title}}</h1>
       <p>Published at: {{news_detail.pub_date}}</p>
       {% autoescape off %}
@@ -13,13 +46,11 @@
       <a href="{{news_detail.url}}">Source</a>
       <br />
       <br />
-      <canvas id="pie" width="400" height="100"></canvas>
-      <br />
-      <br />
-      <canvas id="bar" width="400" height="100"></canvas>
+
     </div>
-  </div>
 </div>
+</div>
+-->
 {% endblock %} {% block scripts %}
 <script>
   $(document).ready(() => {

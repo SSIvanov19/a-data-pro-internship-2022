@@ -98,7 +98,10 @@
 <canvas id="myChart" width="400" height="100"></canvas>
 <canvas id="bar" width="400" height="100"></canvas>
 {% endblock %}
-
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href={% static 'main/style/news.css' %} />
+{% endblock %}
 {% block scripts %}
 <script>
   document.getElementById("crawlbutton").addEventListener("click", () => {
