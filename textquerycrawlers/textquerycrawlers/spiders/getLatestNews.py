@@ -10,35 +10,40 @@ import logging
 
 class GetLatestNews(scrapy.Spider):
     name = "getLatestNews"
-    allowed_domains = ["gov.bg"]
-    start_urls = ["https://gov.bg/bg/prestsentar/novini"]
+    allowed_domains = []
+    start_urls = []
+    url = ""
+    css_all_newsdiv = ""
+    title_css = ""
+    pub_date_css = ""
+    body_css = ""
+    image_xpath = ""
 
     def parse_news(self, response):
         logging.info("Getting news from: " + response.url)
 
         news = NewsItem
         news = {
-            "title": response.css(""".view > h1:nth-child(2)::text""").get(),
+            "title": response.css(self.title_css).get(),
             "url": response.url,
-            "pub_date": response.css(""".view > p:nth-child(3)::text""").get(),
+            "pub_date": response.css(self.pub_date_css).get(),
             "body": "",
             "imageUrl": [],
-            "site": "gov.bg",
+            "site": self.allowed_domains[0],
         }
 
         newsBody = ""
 
-        for newsBodyPart in response.css(""".view > p"""):
+        for newsBodyPart in response.css(self.body_css):
             newsBody += (
                 " ".join(w3lib.html.remove_tags(newsBodyPart.get()).split()) + "<br>"
             )
 
         news.update({"body": newsBody})
 
-        if response.xpath("""//*[@id="lightgallery"]/li/img/@src""").extract():
+        if response.xpath(self.image_xpath).extract():
             news["imageUrl"].append(
-                "https://gov.bg"
-                + response.xpath("""//*[@id="lightgallery"]/li/img/@src""").extract()[0]
+                self.url + response.xpath(self.image_xpath).extract()[0]
             )
 
         yield news
@@ -47,10 +52,10 @@ class GetLatestNews(scrapy.Spider):
         logging.getLogger("scrapy").propagate = False
 
         logging.info("Started crawling for news in " + self.allowed_domains[0])
-        logging.info("Found " + str(len(response.css("""div.item"""))) + " news")
+        logging.info("Found " + str(len(response.css(self.css_all_newsdiv))) + " news")
 
         # Get all news
-        for newsDiv in response.css("""div.item"""):
+        for newsDiv in response.css(self.css_all_newsdiv):
             # Get news href
             yield scrapy.Request(
                 newsDiv.css("""a""").attrib["href"], callback=self.parse_news

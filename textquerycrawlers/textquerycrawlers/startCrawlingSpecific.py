@@ -1,22 +1,35 @@
 import logging
 import logging.handlers
 from multiprocessing import Queue
+import os
+from dotenv import load_dotenv
 import logging_loki
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from textquerycrawlers.textquerycrawlers.spiders.getSpecificNews import GetSpecificNews
 
 
-def startCrawlingSpecific(newsToSearch):
-    print("Started crawling for news in " + newsToSearch)
+def startCrawlingSpecific(
+    allowed_domains,
+    start_url_search,
+    url,
+    css_search_newsdiv,
+    title_css,
+    pub_date_css,
+    body_css,
+    image_xpath,
+    newsToSearch,
+):
+    load_dotenv()
+
     logging.getLogger("requests").setLevel(logging.INFO)
     logging.getLogger("urllib3").setLevel(logging.INFO)
 
     handler = logging_loki.LokiQueueHandler(
         Queue(maxsize=-1),
-        url="https://empireloki.azurewebsites.net/loki/api/v1/push",
+        url=os.getenv("LOKI_URL"),
         tags={"application": "TextQuery"},
-        auth=("Fiki", "R3pt1l123"),
+        auth=(os.getenv("LOKI_USER"), os.getenv("LOKI_PASSWORD")),
         version="1",
     )
 
@@ -32,7 +45,15 @@ def startCrawlingSpecific(newsToSearch):
         "textquerycrawlers.textquerycrawlers.pipelines.TextquerycrawlersPipeline": 300,
     }
 
+    GetSpecificNews.allowed_domains.append(allowed_domains)
+    GetSpecificNews.start_urls.append(start_url_search)
     GetSpecificNews.start_urls[0] += newsToSearch
+    GetSpecificNews.url = url
+    GetSpecificNews.css_search_newsdiv = css_search_newsdiv
+    GetSpecificNews.title_css = title_css
+    GetSpecificNews.pub_date_css = pub_date_css
+    GetSpecificNews.body_css = body_css
+    GetSpecificNews.image_xpath = image_xpath
 
     # Set up crawler
     process = CrawlerProcess(settings)

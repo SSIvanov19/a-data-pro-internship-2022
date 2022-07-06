@@ -1,21 +1,34 @@
 import logging
 import logging.handlers
 from multiprocessing import Queue
+import os
+from dotenv import load_dotenv
 import logging_loki
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from textquerycrawlers.textquerycrawlers.spiders.getLatestNews import GetLatestNews
 
 
-def startCrawling():
+def startCrawling(
+    allowed_domains,
+    start_urls,
+    url,
+    css_all_newsdiv,
+    title_css,
+    pub_date_css,
+    body_css,
+    image_xpath,
+):
     logging.getLogger("requests").setLevel(logging.INFO)
     logging.getLogger("urllib3").setLevel(logging.INFO)
 
+    load_dotenv()
+
     handler = logging_loki.LokiQueueHandler(
         Queue(maxsize=-1),
-        url="https://empireloki.azurewebsites.net/loki/api/v1/push",
+        url=os.getenv("LOKI_URL"),
         tags={"application": "TextQuery"},
-        auth=("Fiki", "R3pt1l123"),
+        auth=(os.getenv("LOKI_USER"), os.getenv("LOKI_PASSWORD")),
         version="1",
     )
 
@@ -30,6 +43,15 @@ def startCrawling():
     settings["ITEM_PIPELINES"] = {
         "textquerycrawlers.textquerycrawlers.pipelines.TextquerycrawlersPipeline": 300,
     }
+
+    GetLatestNews.allowed_domains.append(allowed_domains)
+    GetLatestNews.start_urls.append(start_urls)
+    GetLatestNews.url = url
+    GetLatestNews.css_all_newsdiv = css_all_newsdiv
+    GetLatestNews.title_css = title_css
+    GetLatestNews.pub_date_css = pub_date_css
+    GetLatestNews.body_css = body_css
+    GetLatestNews.image_xpath = image_xpath
 
     # Set up crawler
     process = CrawlerProcess(settings)

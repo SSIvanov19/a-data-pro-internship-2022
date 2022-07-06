@@ -12,9 +12,6 @@ django.setup()
 
 
 from news.models import Entity, News, NewsImage
-from textquerycrawlers.textquerycrawlers.items import NewsItem
-from dotenv import load_dotenv
-import os
 import spacy
 import w3lib
 

@@ -38,14 +38,15 @@ CSRF_TRUSTED_ORIGINS = ["https://textquery.azurewebsites.net", "https://127.0.0.
 # Application definition
 
 INSTALLED_APPS = [
-    "news.apps.NewsConfig",
-    "main.apps.MainConfig",
+    "crawlers.apps.CrawlersConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "main.apps.MainConfig",
+    "news.apps.NewsConfig",
 ]
 
 MIDDLEWARE = [

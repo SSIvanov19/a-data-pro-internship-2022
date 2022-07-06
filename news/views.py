@@ -1,4 +1,5 @@
 from multiprocessing import Pool
+from crawlers.models import Crawler
 from news.models import Entity, News, NewsImage
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
@@ -41,8 +42,24 @@ class NewsListView(ListView):
         if crawl == "true" and query:
             try:
                 # Start crawling in a separate
-                pool = Pool(processes=1)
-                pool.apply_async(startCrawlingSpecific, args=(query,))
+                crawlers = Crawler.objects.all()
+                for crawler in crawlers:
+                    print(crawler.allowed_domain)
+                    pool = Pool(processes=1)
+                    pool.apply_async(
+                        startCrawlingSpecific,
+                        args=(
+                            crawler.allowed_domain,
+                            crawler.start_url_search,
+                            crawler.url,
+                            crawler.css_search_newsdiv,
+                            crawler.title_css,
+                            crawler.pub_date_css,
+                            crawler.body_css,
+                            crawler.image_xpath,
+                            query,
+                        ),
+                    )
             except Exception as e:
                 print(e)
 
