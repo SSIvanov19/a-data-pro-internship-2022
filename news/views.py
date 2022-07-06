@@ -29,7 +29,7 @@ class NewsListView(ListView):
     model = News
     template_name = "news/news_list.html"
     context_object_name = "news_list"
-    paginate_by = 10
+    paginate_by = 12
 
     def get_queryset(self):  # new
         query = self.request.GET.get("q")
@@ -39,7 +39,6 @@ class NewsListView(ListView):
         object_list = News.objects.order_by("-pub_date")
 
         if crawl == "true" and query:
-            print("crawling")
             try:
                 # Start crawling in a separate
                 pool = Pool(processes=1)
@@ -57,6 +56,11 @@ class NewsListView(ListView):
                 object_list = object_list.order_by(sort)
             else:
                 object_list = object_list.order_by("-" + sort)
+
+        # Add imageurl to object_list
+        for news in object_list:
+            if NewsImage.objects.filter(news=news).first():
+                news.imageurl = NewsImage.objects.filter(news=news).first().image_url
 
         return object_list
 
