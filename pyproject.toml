@@ -6,7 +6,7 @@ authors = ["Stoyan Ivanov <ssivanov19@codingburgas.bg>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Django = "^4.0.5"
+Django = "^4.0.9"
 Scrapy = "^2.6.1"
 pre-commit = "^2.19.0"
 python-dotenv = "^0.20.0"
