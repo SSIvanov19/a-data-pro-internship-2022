@@ -579,9 +579,9 @@ spacy==3.3.1; python_version >= "3.6" \
     --hash=sha256:747a99fd2712e60325ff00b6b3131e4aef4c67b2f4433b9ffbd44833889a313d \
     --hash=sha256:787bd8546ae4feed088fb712f3baf5239197cedfe9e1ce9d8906b3e3ef2f10bc \
     --hash=sha256:7f87dbdb104d851ae6ba5fd3a76a2e14e22e048135903e98baf08571a3aa81c0
-sqlparse==0.4.2; python_version >= "3.8" \
-    --hash=sha256:48719e356bb8b42991bdbb1e8b83223757b93789c00910a616a071910ca4a64d \
-    --hash=sha256:0c00730c74263a94e5a9919ade150dfc3b19c574389985446148402998287dae
+sqlparse==0.4.4; python_version >= "3.8" \
+    --hash=sha256:5430a4fe2ac7d0f93e66f1efc6e1338a41884b7ddf2a350cedd20ccc4d9d28f3 \
+    --hash=sha256:d446183e84b8349fa3061f0fe7f06ca94ba65b426946ffebe6e3e8295332420c
 srsly==2.4.3; python_version >= "3.6" \
     --hash=sha256:2d0236feafe3805b384532221596e6749a54d0ff10ba022b333dc1de7aa1b2f7 \
     --hash=sha256:f96af9fde9f58d5923091fa723fa0fed58a83781b98e143a5d1fac5e738b9f0d \
