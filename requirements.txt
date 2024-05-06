@@ -196,9 +196,9 @@ itemadapter==0.6.0; python_version >= "3.6" \
 itemloaders==1.0.4; python_version >= "3.6" \
     --hash=sha256:4cb46a0f8915e910c770242ae3b60b1149913ed37162804f1e40e8535d6ec497 \
     --hash=sha256:1277cd8ca3e4c02dcdfbc1bcae9134ad89acfa6041bd15b4561c6290203a0c96
-jinja2==3.1.2; python_version >= "3.7" \
-    --hash=sha256:6088930bfe239f0e6710546ab9c19c9ef35e29792895fed6e6e31a023a182a61 \
-    --hash=sha256:31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852
+jinja2==3.1.4; python_version >= "3.7" \
+    --hash=sha256:4a3aee7acbbe7303aede8e9648d13b8bf88a429282aa6122a993f0ac800cb369 \
+    --hash=sha256:bc5dd2abb727a5319567b7a813e6a2e7318c39f4f487cfe6c89c6f9c7d25197d
 jmespath==1.0.1; python_version >= "3.7" \
     --hash=sha256:02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980 \
     --hash=sha256:90261b206d6defd58fdd5e85f478bf633a2901798906be2ad389150c5c60edbe
